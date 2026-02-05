@@ -2,19 +2,24 @@
 using namespace std;
 
 int main() {
-    long long n;
+    int n;
     cin >> n;
-    int arr[n];
-    for(int i = 0; i < n; i++) cin >> arr[i];
 
-    long long move = 0; // change to long long
-    for(int i = 1; i < n; i++) {
-        if(arr[i] < arr[i - 1]) {
-            int difference = arr[i - 1] - arr[i];
-            move += difference;
-            arr[i] = arr[i - 1];
+    int arr[n];
+    for (int i = 0; i < n; i++) {
+        cin >> arr[i];
+    }
+
+    long long count = 0;   // total added value
+
+    for (int i = 0; i < n - 1; i++) {   // stop at n-1
+        if (arr[i + 1] < arr[i]) {
+            long long add = arr[i] - arr[i + 1];
+            count += add;              // keep track of added amount
+            arr[i + 1] = arr[i];       // make array non-decreasing
         }
     }
 
-    cout << move << endl;
+    cout << count << endl;
+    return 0;
 }
